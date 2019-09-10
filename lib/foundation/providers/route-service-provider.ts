@@ -1,38 +1,27 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Express } from 'express'
-import { container } from 'tsyringe'
-import { RouterConf } from '@types'
 
 export default class RouteServiceProvider {
 
   constructor(protected app: Express) {
 
-    this.middleware(app)
-
-    this.mapRoutes()
+    this.middleware().routes()
 
   }
 
-  protected middleware(app: Express): void {
+  protected middleware(): RouteServiceProvider {
 
     // Apply Middleware
 
-  }
-
-  protected routes(): Array<RouterConf> {
-
-    return []
+    return this
 
   }
 
-  private mapRoutes(): void {
+  protected routes(): RouteServiceProvider {
 
-    for (const route of this.routes()) {
+    // Map Routes
 
-      const routerClass: any = container.resolve(route.router)
-
-      this.app.use(route.prefix, routerClass.getRouter())
-    }
+    return this
 
   }
 

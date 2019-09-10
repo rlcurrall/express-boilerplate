@@ -1,10 +1,12 @@
 import 'reflect-metadata'
 import https from 'https'
 import helmet from 'helmet'
+import config from 'config'
 import express from 'express'
 import { readFileSync } from 'fs'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,7 @@ import cookieParser from 'cookie-parser'
 import './bootstrap'
 import './app/providers/app-service-provider'
 
+
 /*
 |--------------------------------------------------------------------------
 | Application Imports
@@ -29,7 +32,10 @@ import './app/providers/app-service-provider'
 | import to ensure there all helpers are available.
 |
 */
+
+import logger from './lib/foundation/helpers/logger'
 import RouteServiceProvider from './app/providers/route-service-provider'
+
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +47,7 @@ import RouteServiceProvider from './app/providers/route-service-provider'
 */
 
 const server = express()
+
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +67,7 @@ server.use(bodyParser.urlencoded({ extended: true }))
 server.use(helmet())
 
 server.use(cookieParser())
+
 
 /*
 |--------------------------------------------------------------------------
@@ -83,10 +91,10 @@ new RouteServiceProvider(server)
 */
 https
   .createServer({
-    key: readFileSync(env('APP_KEY', './storage/certs/server.key')),
-    cert: readFileSync(env('APP_CERT', './storage/certs/server.cert')),
-    passphrase: env('APP_PASSPHRASE', '')
+    key: readFileSync(config.get('app.key')),
+    cert: readFileSync(config.get('app.cert')),
+    passphrase: config.get('app.passphrase')
   }, server)
-  .listen(env('APP_PORT', 3000), () => {
+  .listen(config.get('app.port'), () => {
     logger.info('Server started!')
   })

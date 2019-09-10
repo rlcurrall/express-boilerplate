@@ -1,5 +1,6 @@
 import { container } from 'tsyringe'
-import WebRouter from '@app/routes/web'
+import HomeController from 'app/controllers/home-controller'
+import SomeClass from 'app/services/some-service'
 
 /*
 |--------------------------------------------------------------------------
@@ -13,4 +14,5 @@ import WebRouter from '@app/routes/web'
 */
 
 container
-  .register<WebRouter>('WebRouter', { useClass: WebRouter })
+  .register<HomeController>(HomeController, { useClass: HomeController })
+  .register<SomeClass>(SomeClass, { useClass: SomeClass })

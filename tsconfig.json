@@ -1,35 +1,28 @@
 {
     "compileOnSave": true,
     "compilerOptions": {
-        "rootDir": ".",
+        "rootDirs": ["."],
         "sourceMap": true,
         "target": "es2018",
+        "outDir": "./dist",
+        "incremental": true,
+        "declaration": true,
+        "module": "commonjs",
         "noImplicitAny": true,
         "removeComments": true,
-        "preserveConstEnums": true,
-        "incremental": true,
-        "module": "commonjs",
         "esModuleInterop": true,
-        "experimentalDecorators": true,
+        "preserveConstEnums": true,
         "emitDecoratorMetadata": true,
-        "declaration": true,
-        "outDir": "./dist",
-        "baseUrl": ".",
-        "paths": {
-            "@app/*": [ "app/*" ],
-            "@bootstrap/*": [ "bootstrap/*" ],
-            "@config/*": [ "config/*" ],
-            "@database/*": [ "database/*" ],
-            "@lib/*": [ "lib/*" ],
-            "@types/*": [ "@types/*" ]
-        }
+        "experimentalDecorators": true,
+        "baseUrl": "."
     },
     "include": [
         "app/**/*.ts",
         "config/**/*.ts",
         "database/**/*.ts",
         "lib/**/*.ts",
-        "app/routes/**/*.ts"
+        "app/routes/**/*.ts",
+        "index.ts"
     ],
     "exclude": [
         "node_modules",

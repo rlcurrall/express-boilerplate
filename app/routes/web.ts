@@ -1,43 +1,23 @@
-// import csurf from 'csurf'
+import csurf from 'csurf'
 import { Router } from 'express'
-import { injectable } from 'tsyringe'
-import session from '@lib/foundation/middleware/session'
-import HomeController from '@app/controllers/home-controller'
-import SomeClass from '@app/services/some-service'
+import { resolve } from 'lib/foundation/helpers'
+import session from 'lib/foundation/middleware/session'
+import HomeController from 'app/controllers/home-controller'
+import { param } from 'express-validator'
 
+const router = Router()
 
-@injectable()
-export default class WebRouter {
+/*
+|--------------------------------------------------------------------------
+| Resolve Necessary Controllers
+|--------------------------------------------------------------------------
+|
+| Register the session middleware for web routes.
+|
+*/
 
-  private router: Router
+const homeController = resolve<HomeController>(HomeController)
 
-  constructor(private homeController: HomeController, private someClass: SomeClass) {
-
-    this.router = Router()
-
-    this.register()
-
-  }
-
-  public register(): void {
-
-    this.router.use(session)
-
-    this.router.get('/', this.homeController.index)
-
-  }
-
-  public getRouter(): Router {
-
-    this.someClass.someMethod()
-
-    return this.router
-
-  }
-
-}
-
-// const router = Router()
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
@@ -47,9 +27,9 @@ export default class WebRouter {
 |
 */
 
-// router.use(csurf({ cookie: true }))
+router.use(csurf({ cookie: true }))
 
-// router.use(session)
+router.use(session)
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +40,13 @@ export default class WebRouter {
 |
 */
 
-// router.get('/', HomeController.index)
+router.get('/', (req, res) => homeController.index(req, res))
 
-// export default router
+router.get(
+  '/test/:id/other/:other',
+  param('id').isNumeric().withMessage('The `id` pram must be numeric.'),
+  param('other').isAlpha().withMessage('The `other` param must be alphabetic.'),
+  (req, res) => homeController.test(req, res)
+)
+
+export default router

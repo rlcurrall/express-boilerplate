@@ -1,3 +1,5 @@
+import logger from 'lib/foundation/helpers/logger'
+
 export default class SomeClass {
 
   private message: string

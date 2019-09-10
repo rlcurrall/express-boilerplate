@@ -1,7 +1,13 @@
 import morgan from 'morgan'
 import { Express } from 'express'
-import { RouterConf } from '@types'
-import ServiceProvider from '@lib/foundation/providers/route-service-provider'
+import ApiRouter from 'app/routes/api'
+import WebRouter from 'app/routes/web'
+import logger from 'lib/foundation/helpers/logger'
+import ServiceProvider from 'lib/foundation/providers/route-service-provider'
+
+function write(message: string): void {
+  logger.info(message.trim())
+}
 
 export default class RouteServiceProvider extends ServiceProvider {
 
@@ -11,29 +17,30 @@ export default class RouteServiceProvider extends ServiceProvider {
 
   }
 
-  protected middleware(app: Express): void {
+  protected middleware(): RouteServiceProvider {
 
-    app.use(morgan('tiny', {
-      stream: {
-        write: function (message: string): void {
-          logger.info(message.trim())
+    this.app
+
+      .use(morgan('tiny', {
+        stream: {
+          write
         }
-      }
-    }))
+      }))
+
+    return this
 
   }
 
-  protected routes(): Array<RouterConf> {
-    return [
-      {
-        prefix: '/',
-        router: 'WebRouter'
-      },
-      {
-        prefix: '/api',
-        router: 'ApiRouter'
-      }
-    ]
+  protected routes(): RouteServiceProvider {
+
+    this.app
+    
+      .use('/', WebRouter)
+
+      .use('/api', ApiRouter)
+
+    return this
+
   }
 
 }

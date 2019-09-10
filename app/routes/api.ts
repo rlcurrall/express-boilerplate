@@ -1,12 +1,28 @@
 import { Router } from 'express'
+import { injectable } from 'tsyringe'
+import IRouter from 'lib/foundation/router/interface'
 
-const router = Router()
+@injectable()
+export default class ApiRouter implements IRouter {
 
-router.get('/', (req, res) => {
-  res
-    .status(200)
-    .send('Hello, from api!')
-    .end()
-})
+  private router: Router = Router()
 
-export default router
+  public register(): ApiRouter {
+
+    this.router.get('/', (req, res) => {
+      res.status(200)
+        .send('Hello, from the api!')
+        .end()
+    })
+
+    return this
+
+  }
+
+  public getRouter(): Router {
+
+    return this.router
+
+  }
+
+}

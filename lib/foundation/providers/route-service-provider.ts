@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Express } from 'express'
 import { container } from 'tsyringe'
-import { RouterConf } from '@types'
+import { RouterConfig } from 'lib/@types'
 
 export default class RouteServiceProvider {
 
@@ -19,7 +19,7 @@ export default class RouteServiceProvider {
 
   }
 
-  protected routes(): Array<RouterConf> {
+  protected routes(): Array<RouterConfig> {
 
     return []
 
@@ -31,7 +31,7 @@ export default class RouteServiceProvider {
 
       const routerClass: any = container.resolve(route.router)
 
-      this.app.use(route.prefix, routerClass.getRouter())
+      this.app.use(route.prefix, routerClass.register().getRouter())
     }
 
   }

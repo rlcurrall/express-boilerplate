@@ -1,0 +1,76 @@
+2019-09-10T13:58:46.582Z [SomeClass] info: 	Hello World!
+2019-09-10T13:58:46.600Z [App] info: 	Server started!
+2019-09-10T14:22:15.787Z [SomeClass] info: 	Hello World!
+2019-09-10T14:22:15.813Z [App] info: 	Server started!
+2019-09-10T14:44:37.726Z [SomeClass] info: 	Hello World!
+2019-09-10T14:44:37.744Z [App] info: 	Server started!
+2019-09-10T14:45:15.064Z [App] info: 	GET / 200 6 - 8.436 ms
+2019-09-10T14:45:15.186Z [App] info: 	GET /favicon.ico 404 150 - 5.247 ms
+2019-09-10T14:45:21.002Z [App] info: 	GET / 200 24 - 1.199 ms
+2019-09-10T14:45:25.113Z [App] info: 	GET /api 200 20 - 1.000 ms
+2019-09-10T14:45:29.753Z [App] info: 	GET / 200 24 - 0.822 ms
+2019-09-10T14:53:02.576Z [SomeClass] info: 	Hello World!
+2019-09-10T14:53:02.597Z [App] info: 	Server started!
+2019-09-10T14:56:14.793Z [SomeClass] info: 	Hello World!
+2019-09-10T14:56:14.812Z [App] info: 	Server started!
+2019-09-10T14:58:27.503Z [SomeClass] info: 	Hello World!
+2019-09-10T14:58:27.523Z [App] info: 	Server started!
+2019-09-10T14:58:56.748Z [SomeClass] info: 	Hello World!
+2019-09-10T14:58:56.768Z [App] info: 	Server started!
+2019-09-10T14:59:57.751Z [SomeClass] info: 	Hello World!
+2019-09-10T14:59:57.786Z [App] info: 	Server started!
+2019-09-10T15:00:00.192Z [App] info: 	GET / 200 6 - 5.377 ms
+2019-09-10T15:00:01.496Z [App] info: 	GET / 200 24 - 2.679 ms
+2019-09-10T15:00:01.924Z [App] info: 	GET / 200 24 - 0.683 ms
+2019-09-10T15:00:02.395Z [App] info: 	GET / 200 24 - 0.577 ms
+2019-09-10T15:00:02.839Z [App] info: 	GET / 200 24 - 0.952 ms
+2019-09-10T15:00:06.531Z [App] info: 	GET /api 200 20 - 1.340 ms
+2019-09-10T15:00:10.281Z [App] info: 	GET /api 200 20 - 1.321 ms
+2019-09-10T15:00:11.760Z [App] info: 	GET /api 200 20 - 0.810 ms
+2019-09-10T15:00:12.207Z [App] info: 	GET /api 200 20 - 0.811 ms
+2019-09-10T15:00:12.372Z [App] info: 	GET /api 200 20 - 0.433 ms
+2019-09-10T15:00:12.563Z [App] info: 	GET /api 200 20 - 1.199 ms
+2019-09-10T15:00:12.749Z [App] info: 	GET /api 200 20 - 0.879 ms
+2019-09-10T15:00:12.944Z [App] info: 	GET /api 200 20 - 0.469 ms
+2019-09-10T15:02:50.556Z [SomeClass] info: 	Hello World!
+2019-09-10T15:02:50.579Z [App] info: 	Server started!
+2019-09-10T15:12:35.113Z [SomeClass] info: 	Hello World!
+2019-09-10T15:12:35.127Z [App] info: 	Server started!
+2019-09-10T15:12:56.741Z [SomeClass] info: 	Hello World!
+2019-09-10T15:12:56.755Z [App] info: 	Server started!
+2019-09-10T15:13:05.685Z [SomeClass] info: 	Hello World!
+2019-09-10T15:13:05.700Z [App] info: 	Server started!
+2019-09-10T15:13:19.856Z [SomeClass] info: 	Hello World!
+2019-09-10T15:13:19.872Z [App] info: 	Server started!
+2019-09-10T15:13:44.253Z [SomeClass] info: 	Hello World!
+2019-09-10T15:13:44.283Z [App] info: 	Server started!
+2019-09-10T15:14:28.036Z [SomeClass] info: 	Hello World!
+2019-09-10T15:14:28.057Z [App] info: 	Server started!
+2019-09-10T15:15:20.573Z [SomeClass] info: 	Hello World!
+2019-09-10T15:15:20.594Z [App] info: 	Server started!
+2019-09-10T15:15:37.439Z [SomeClass] info: 	Hello World!
+2019-09-10T15:15:37.457Z [App] info: 	Server started!
+2019-09-10T15:17:24.369Z [SomeClass] info: 	Hello World!
+2019-09-10T15:17:24.389Z [App] info: 	Server started!
+2019-09-10T15:17:38.643Z [SomeClass] info: 	Hello World!
+2019-09-10T15:17:38.664Z [App] info: 	Server started!
+2019-09-10T15:20:04.407Z [SomeClass] info: 	Hello World!
+2019-09-10T15:20:04.424Z [App] info: 	Server started!
+2019-09-10T15:21:44.503Z [SomeClass] info: 	Hello World!
+2019-09-10T15:21:44.528Z [App] info: 	Server started!
+2019-09-10T15:22:57.513Z [SomeClass] info: 	Hello World!
+2019-09-10T15:22:57.532Z [App] info: 	Server started!
+2019-09-10T15:25:53.949Z [SomeClass] info: 	Hello World!
+2019-09-10T15:25:53.968Z [App] info: 	Server started!
+2019-09-10T15:26:13.866Z [SomeClass] info: 	Hello World!
+2019-09-10T15:26:13.882Z [App] info: 	Server started!
+2019-09-10T15:26:33.147Z [App] info: 	GET /test 404 143 - 7.466 ms
+2019-09-10T15:26:43.358Z [App] info: 	GET /test 404 143 - 2.435 ms
+2019-09-10T15:27:19.458Z [SomeClass] info: 	Hello World!
+2019-09-10T15:27:19.515Z [App] info: 	Server started!
+2019-09-10T15:27:21.987Z [App] info: 	GET /test 500 1416 - 11.563 ms
+2019-09-10T15:28:30.965Z [SomeClass] info: 	Hello World!
+2019-09-10T15:28:30.983Z [App] info: 	Server started!
+2019-09-10T15:29:33.515Z [SomeClass] info: 	Hello World!
+2019-09-10T15:29:33.533Z [App] info: 	Server started!
+2019-09-10T15:29:36.920Z [App] info: 	GET /test 500 1492 - 13.989 ms

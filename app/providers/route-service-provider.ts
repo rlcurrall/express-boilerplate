@@ -1,7 +1,8 @@
-import morgan from 'morgan'
+import morgan = require('morgan')
 import { Express } from 'express'
-import { RouterConf } from '@types'
-import ServiceProvider from '@lib/foundation/providers/route-service-provider'
+import { RouterConfig } from 'lib/@types'
+import ServiceProvider from 'lib/foundation/providers/route-service-provider'
+import logger from 'lib/foundation/helpers/logger'
 
 export default class RouteServiceProvider extends ServiceProvider {
 
@@ -11,6 +12,11 @@ export default class RouteServiceProvider extends ServiceProvider {
 
   }
 
+  /**
+   * Apply global middleware to the Express application.
+   *
+   * @param app Express application
+   */
   protected middleware(app: Express): void {
 
     app.use(morgan('tiny', {
@@ -23,15 +29,18 @@ export default class RouteServiceProvider extends ServiceProvider {
 
   }
 
-  protected routes(): Array<RouterConf> {
+  /**
+   * Define routes for the application.
+   */
+  protected routes(): Array<RouterConfig> {
     return [
       {
         prefix: '/',
-        router: 'WebRouter'
+        router: 'App/Routes/WebRouter'
       },
       {
         prefix: '/api',
-        router: 'ApiRouter'
+        router: 'App/Routes/ApiRouter'
       }
     ]
   }

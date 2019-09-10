@@ -4,12 +4,9 @@
   "description": "Boilerplate code for an Express Typescript Application",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "node -r tsconfig-paths/register dist/index.js",
     "start:dev": "ts-node -r tsconfig-paths/register index.ts",
     "start:prod": "cross-env NODE_ENV=production ts-node -r tsconfig-paths/register index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "ts-node-dev -r tsconfig-paths/register index.ts"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "robert@currall.net",
   "license": "ISC",
@@ -26,7 +23,6 @@
     "eslint": "^6.3.0",
     "eslint-plugin-node": "^10.0.0",
     "ts-node": "^8.3.0",
-    "ts-node-dev": "^1.0.0-pre.42",
     "tsconfig-paths": "^3.8.0",
     "typescript": "^3.6.2"
   },

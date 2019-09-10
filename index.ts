@@ -1,7 +1,6 @@
 import 'reflect-metadata'
 import https from 'https'
 import helmet from 'helmet'
-import config from 'config'
 import express from 'express'
 import { readFileSync } from 'fs'
 import bodyParser from 'body-parser'
@@ -30,8 +29,6 @@ import './app/providers/app-service-provider'
 | import to ensure there all helpers are available.
 |
 */
-
-import logger from 'lib/foundation/helpers/logger'
 import RouteServiceProvider from './app/providers/route-service-provider'
 
 /*
@@ -86,10 +83,10 @@ new RouteServiceProvider(server)
 */
 https
   .createServer({
-    key: readFileSync(config.get('app.key')),
-    cert: readFileSync(config.get('app.cert')),
-    passphrase: config.get('app.passphrase')
+    key: readFileSync(env('APP_KEY', './storage/certs/server.key')),
+    cert: readFileSync(env('APP_CERT', './storage/certs/server.cert')),
+    passphrase: env('APP_PASSPHRASE', '')
   }, server)
-  .listen(config.get('app.port'), () => {
+  .listen(env('APP_PORT', 3000), () => {
     logger.info('Server started!')
   })

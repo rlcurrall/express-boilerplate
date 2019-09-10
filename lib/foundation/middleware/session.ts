@@ -1,12 +1,11 @@
 import session from 'express-session'
-import config from 'config'
 
 export default session({
-  secret: config.get('app.secret'),
+  secret: env('APP_SECRET', 'secret'),
   resave: false,
   saveUninitialized: true,
   cookie: {
-    secure: config.get('app.env'),
+    secure: env('APP_ENV', 'production') === 'production',
     maxAge: 60000
   }
 })

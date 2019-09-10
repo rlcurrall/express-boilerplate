@@ -1,4 +1,5 @@
-import winstonDailyRotateFile = require('winston-daily-rotate-file')
+import stream from 'stream'
+import winstonDailyRotateFile from 'winston-daily-rotate-file'
 import { createLogger, transports, format, Logger } from 'winston'
 
 const { combine, timestamp, printf, align } = format
@@ -36,6 +37,12 @@ const logger: Logger = createLogger({
     new Console()
   ]
 
+})
+
+logger.stream = (): stream.Duplex => new stream.Duplex({
+  write: (message: string): void => {
+    logger.info(message)
+  }
 })
 
 export default logger

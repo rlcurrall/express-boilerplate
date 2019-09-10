@@ -1,8 +1,5 @@
 import { container } from 'tsyringe'
-import WebRouter from 'app/routes/web'
-import ApiRouter from 'app/routes/api'
-import SomeClass from 'app/services/some-service'
-import HomeController from 'app/controllers/home-controller'
+import WebRouter from '@app/routes/web'
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +13,4 @@ import HomeController from 'app/controllers/home-controller'
 */
 
 container
-  .register<SomeClass>(SomeClass, { useClass: SomeClass })
-  .register<HomeController>(HomeController, { useClass: HomeController })
-  .register<WebRouter>('App/Routes/WebRouter', { useClass: WebRouter })
-  .register<ApiRouter>('App/Routes/ApiRouter', { useClass: ApiRouter })
+  .register<WebRouter>('WebRouter', { useClass: WebRouter })

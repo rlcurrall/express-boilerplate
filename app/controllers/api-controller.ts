@@ -20,7 +20,10 @@ export default class ApiController implements IController {
 
     this.someService.someMethod()
 
-    return res.send('Hello from the api!')
+    res.write('Hello from the api!\n')
+    res.write('another line maybe?')
+
+    return res.send()
 
   }
 

@@ -1,0 +1,80 @@
+{
+    /*==================================================*/
+    /*                WORKBENCH SETTINGS                */
+    /*==================================================*/
+    "editor.minimap.enabled": false,
+    "workbench.sideBar.location": "left",
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+  
+    /*==================================================*/
+    /*                  EDITOR SETTINGS                 */
+    /*==================================================*/
+    "editor.formatOnSave": false,
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "'Fira Code', Menlo, monospace",
+  
+    /*==================================================*/
+    /*                 EXPLORER SETTINGS                */
+    /*==================================================*/
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+  
+    /*==================================================*/
+    /*                   GIT SETTINGS                   */
+    /*==================================================*/
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "diffEditor.renderSideBySide": false,
+  
+    /*==================================================*/
+    /*                  EMMET SETTINGS                  */
+    /*==================================================*/
+    "emmet.includeLanguages": {
+      "razor": "html",
+      "vue-html": "html",
+      "plaintext": "jade",
+      "javascript": "javascriptreact"
+    },
+
+    /*==================================================*/
+    /*            LANGUAGE SPECIFIC SETTINGS            */
+    /*==================================================*/
+    "[javascript]": {
+        "editor.tabSize": 2,
+        "editor.formatOnSave": false,
+        "editor.formatOnPaste": false,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "[typescript]": {
+        "editor.tabSize": 2,
+        "editor.formatOnSave": false,
+        "editor.formatOnPaste": false,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+
+    /*==================================================*/
+    /*                 EXTENSION SETTINGS               */
+    /*==================================================*/
+
+    /* Eslint Config*/
+    "eslint.autoFixOnSave": true,
+    "eslint.validate": [
+        {
+        "language": "vue",
+        "autoFix": true
+        },
+        {
+        "language": "html",
+        "autoFix": true
+        },
+        {
+        "language": "javascript",
+        "autoFix": true
+        },
+        {
+        "language": "typescript",
+        "autoFix": true
+        }
+    ],
+}

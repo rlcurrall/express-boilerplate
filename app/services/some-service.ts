@@ -11,4 +11,5 @@ export default class SomeClass {
   public someMethod(): void {
     logger.info(this.message, { label: 'SomeClass' })
   }
+
 }

@@ -132,3 +132,53 @@
 2019-09-10T19:33:55.171Z [App] info: 	GET /test/1234/other/asdf 200 28 - 14.423 ms
 2019-09-10T19:34:00.195Z [App] info: 	GET /test/asdf/other/asdf 200 101 - 3.351 ms
 2019-09-10T19:34:04.623Z [App] info: 	GET /test/asdf/other/1234 200 200 - 2.754 ms
+2019-09-10T21:21:04.677Z [App] info: 	Server started!
+2019-09-10T21:21:14.767Z [SomeClass] info: 	Hello World!
+2019-09-10T21:21:14.772Z [App] info: 	GET / 200 6 - 4.751 ms
+2019-09-10T21:21:18.317Z [App] info: 	GET / 200 24 - 1.029 ms
+2019-09-10T21:21:22.911Z [App] info: 	GET /api 500 1378 - 14.194 ms
+2019-09-10T21:30:10.483Z [App] info: 	Server started!
+2019-09-10T21:30:14.249Z [SomeClass] info: 	Hello World!
+2019-09-10T21:30:14.263Z [App] info: 	GET /api 200 19 - 13.800 ms
+2019-09-10T21:30:23.481Z [App] info: 	GET /api/check 200 3 - 3.718 ms
+2019-09-10T21:34:05.440Z [App] info: 	Server started!
+2019-09-10T21:34:17.274Z [SomeClass] info: 	Hello World!
+2019-09-10T21:34:17.280Z [App] info: 	GET /api 200 19 - 4.972 ms
+2019-09-10T21:45:19.246Z [App] info: 	Server started!
+2019-09-10T21:45:21.949Z [SomeClass] info: 	Hello World!
+2019-09-10T21:45:21.955Z [App] info: 	GET /api 200 19 - 5.201 ms
+2019-09-10T21:45:32.997Z [App] info: 	GET /test/1234/other/asdf 200 28 - 7.601 ms
+2019-09-10T21:45:43.427Z [App] info: 	GET /test/asdf/other/1234 200 200 - 1.977 ms
+2019-09-10T21:46:16.569Z [App] info: 	Server started!
+2019-09-10T21:46:18.273Z [SomeClass] info: 	Hello World!
+2019-09-10T21:46:18.278Z [App] info: 	GET /test/asdf/other/1234 200 200 - 8.234 ms
+2019-09-10T22:03:28.944Z [App] info: 	Server started!
+2019-09-10T22:03:35.063Z [SomeClass] info: 	Hello World!
+2019-09-10T22:03:35.068Z [App] info: 	GET /test/asdf/other/1234 200 200 - 9.283 ms
+2019-09-10T22:17:39.594Z [App] info: 	Server started!
+2019-09-10T22:17:43.473Z [SomeClass] info: 	Hello World!
+2019-09-10T22:17:43.479Z [App] info: 	GET /test/asdf/other/1234 200 200 - 10.726 ms
+2019-09-10T22:17:52.179Z [SomeClass] info: 	Hello World!
+2019-09-10T22:17:52.181Z [App] info: 	GET /test/1234/other/asdf 200 28 - 2.589 ms
+2019-09-10T22:17:59.148Z [App] info: 	GET /api 500 1378 - 7.804 ms
+2019-09-10T22:19:22.705Z [App] info: 	Server started!
+2019-09-10T22:19:40.142Z [SomeClass] info: 	Hello World!
+2019-09-10T22:19:40.152Z [App] info: 	GET /api 200 19 - 11.384 ms
+2019-09-11T00:37:51.929Z [App] info: 	Server started!
+2019-09-11T00:37:57.490Z [SomeClass] info: 	Hello World!
+2019-09-11T00:37:57.494Z [App] info: 	GET /api 200 19 - 3.606 ms
+2019-09-11T00:38:01.712Z [SomeClass] info: 	Hello World!
+2019-09-11T00:38:01.718Z [App] info: 	GET / 200 6 - 7.163 ms
+2019-09-11T00:38:08.681Z [SomeClass] info: 	Hello World!
+2019-09-11T00:38:08.683Z [App] info: 	GET /test/1234/other/asdf 200 28 - 7.151 ms
+2019-09-11T00:38:14.706Z [SomeClass] info: 	Hello World!
+2019-09-11T00:38:14.707Z [App] info: 	GET /test/asdf/other/asdf 200 101 - 2.019 ms
+2019-09-11T00:38:20.474Z [SomeClass] info: 	Hello World!
+2019-09-11T00:38:20.475Z [App] info: 	GET /test/asdf/other/1234 200 200 - 1.206 ms
+2019-09-11T01:09:06.497Z [App] info: 	Server started!
+2019-09-11T01:10:28.166Z [App] info: 	Server started!
+2019-09-11T01:23:16.691Z [App] info: 	Server started!
+2019-09-11T01:23:27.320Z [SomeClass] info: 	Hello World!
+2019-09-11T01:24:04.642Z [App] info: 	Server started!
+2019-09-11T01:24:06.654Z [SomeClass] info: 	Hello World!
+2019-09-11T01:24:06.661Z [App] info: 	GET /test/asdf/other/1234 200 200 - 9.578 ms

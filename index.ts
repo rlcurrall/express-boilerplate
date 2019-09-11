@@ -1,11 +1,7 @@
 import 'reflect-metadata'
 import https from 'https'
-import helmet from 'helmet'
 import config from 'config'
-import express from 'express'
 import { readFileSync } from 'fs'
-import bodyParser from 'body-parser'
-import cookieParser from 'cookie-parser'
 
 
 /*
@@ -46,7 +42,7 @@ import RouteServiceProvider from './app/providers/route-service-provider'
 |
 */
 
-const server = express()
+// const server = express()
 
 
 /*
@@ -60,13 +56,13 @@ const server = express()
 |
 */
 
-server.use(bodyParser.json())
+// server.use(bodyParser.json())
 
-server.use(bodyParser.urlencoded({ extended: true }))
+// server.use(bodyParser.urlencoded({ extended: true }))
 
-server.use(helmet())
+// server.use(helmet())
 
-server.use(cookieParser())
+// server.use(cookieParser())
 
 
 /*
@@ -78,7 +74,7 @@ server.use(cookieParser())
 |
 */
 
-new RouteServiceProvider(server)
+const server = new RouteServiceProvider()
 
 
 /*
@@ -94,7 +90,7 @@ https
     key: readFileSync(config.get('app.key')),
     cert: readFileSync(config.get('app.cert')),
     passphrase: config.get('app.passphrase')
-  }, server)
+  }, server.app)
   .listen(config.get('app.port'), () => {
     logger.info('Server started!')
   })

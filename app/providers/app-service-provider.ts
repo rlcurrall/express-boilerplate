@@ -1,6 +1,7 @@
 import { container } from 'tsyringe'
 import HomeController from 'app/controllers/home-controller'
 import SomeClass from 'app/services/some-service'
+import ApiController from 'app/controllers/api-controller'
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,6 @@ import SomeClass from 'app/services/some-service'
 */
 
 container
+  .register<ApiController>(ApiController, { useClass: ApiController })
   .register<HomeController>(HomeController, { useClass: HomeController })
   .register<SomeClass>(SomeClass, { useClass: SomeClass })

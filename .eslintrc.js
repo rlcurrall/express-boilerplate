@@ -19,6 +19,7 @@ module.exports = {
     "eol-last": ["error", "always"],
     "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
     "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/interface-name-prefix": "off",
   },
   overrides: [
     {

@@ -1,46 +1,41 @@
 import morgan from 'morgan'
-import { Express } from 'express'
-import ApiRouter from 'app/routes/api'
-import WebRouter from 'app/routes/web'
+import { RequestHandler } from 'express'
 import logger from 'lib/foundation/helpers/logger'
 import ServiceProvider from 'lib/foundation/providers/route-service-provider'
-
-function write(message: string): void {
-  logger.info(message.trim())
-}
+import ApiController from 'app/controllers/api-controller'
+import { resolve } from 'lib/foundation/helpers'
+import { IController } from 'lib/foundation/interfaces'
+import HomeController from 'app/controllers/home-controller'
 
 export default class RouteServiceProvider extends ServiceProvider {
 
-  public constructor(app: Express) {
+  public constructor() {
 
-    super(app)
+    super()
+
+    this.registerMiddleware()
+
+    this.mapRoutes()
 
   }
 
-  protected middleware(): RouteServiceProvider {
+  protected controllers: Array<IController> = [
 
-    this.app
+    resolve<ApiController>(ApiController),
+    resolve<HomeController>(HomeController)
 
-      .use(morgan('tiny', {
-        stream: {
-          write
+  ]
+
+  protected middleware: Array< RequestHandler> = [
+
+    morgan('tiny', {
+      stream: {
+        write: function (message: string): void {
+          logger.info(message.trim())
         }
-      }))
+      }
+    })
 
-    return this
-
-  }
-
-  protected routes(): RouteServiceProvider {
-
-    this.app
-    
-      .use('/', WebRouter)
-
-      .use('/api', ApiRouter)
-
-    return this
-
-  }
+  ]
 
 }

@@ -44,9 +44,11 @@ router.get('/', (req, res) => homeController.index(req, res))
 
 router.get(
   '/test/:id/other/:other',
-  param('id').isNumeric().withMessage('The `id` pram must be numeric.'),
-  param('other').isAlpha().withMessage('The `other` param must be alphabetic.'),
-  (req, res) => homeController.test(req, res)
+  [
+    param('id').isNumeric().withMessage('The `id` pram must be numeric.'),
+    param('other').isAlpha().withMessage('The `other` param must be alphabetic.')
+  ],
+  homeController.test.bind(homeController)
 )
 
 export default router

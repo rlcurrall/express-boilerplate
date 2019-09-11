@@ -1,27 +1,49 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Express } from 'express'
+import express, { Express, RequestHandler } from 'express'
+import { IController } from '../interfaces'
+import helmet from 'helmet'
+import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser'
 
 export default class RouteServiceProvider {
 
-  constructor(protected app: Express) {
+  public app: Express
 
-    this.middleware().routes()
+  protected controllers: Array<IController>
+
+  protected middleware: Array<RequestHandler>
+
+  constructor() {
+
+    this.app = express()
+
+    this.app.use(bodyParser.json())
+
+    this.app.use(bodyParser.urlencoded({ extended: true }))
+
+    this.app.use(helmet())
+
+    this.app.use(cookieParser())
 
   }
 
-  protected middleware(): RouteServiceProvider {
+  protected mapRoutes(): void {
 
-    // Apply Middleware
+    for (const controller of this.controllers) {
 
-    return this
+      this.app.use(controller.prefix, controller.router)
+
+    }
 
   }
 
-  protected routes(): RouteServiceProvider {
+  protected registerMiddleware(): void {
 
-    // Map Routes
+    for (const m of this.middleware) {
 
-    return this
+      this.app.use(m)
+
+    }
 
   }
 

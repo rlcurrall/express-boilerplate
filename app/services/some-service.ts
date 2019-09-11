@@ -1,6 +1,6 @@
-import logger from 'lib/foundation/helpers/logger'
+import { logger } from 'lib/foundation/helpers'
 
-export default class SomeClass {
+export default class SomeService {
 
   private message: string
 
@@ -9,7 +9,7 @@ export default class SomeClass {
   }
 
   public someMethod(): void {
-    logger.info(this.message, { label: 'SomeClass' })
+    logger.info(this.message, { label: 'SomeService' })
   }
 
 }

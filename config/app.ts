@@ -6,10 +6,14 @@ export default {
 
   port: process.env.APP_PORT || 3000,
 
-  key: process.env.APP_KEY || './storage/certs/server.key',
+  tls: {
 
-  cert: process.env.APP_CERT || './storage/certs/server.cert',
+    key: process.env.APP_KEY || './storage/certs/server.key',
 
-  passphrase: process.env.APP_PASSPHRASE || ''
+    cert: process.env.APP_CERT || './storage/certs/server.cert',
+
+    passphrase: process.env.APP_PASSPHRASE || ''
+
+  }
 
 }

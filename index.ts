@@ -2,6 +2,10 @@ import 'reflect-metadata'
 import https from 'https'
 import config from 'config'
 import { readFileSync } from 'fs'
+import morgan from 'morgan'
+import helmet from 'helmet'
+import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser'
 
 
 /*
@@ -29,52 +33,49 @@ import './app/providers/app-service-provider'
 |
 */
 
-import logger from './lib/foundation/helpers/logger'
-import RouteServiceProvider from './app/providers/route-service-provider'
+import { logger } from './lib/foundation/helpers'
+import AppFactory from './app/app-factory'
 
 
 /*
 |--------------------------------------------------------------------------
-| Server Instance
+| Application Instance
 |--------------------------------------------------------------------------
 |
-| The instance of the Express server.
+| Using the application factory, a new instance of the application will be
+| created.
 |
 */
 
-// const server = express()
+const server = new AppFactory()
 
 
 /*
 |--------------------------------------------------------------------------
-| Application Defined Middleware
+| Default Global Middleware
 |--------------------------------------------------------------------------
 |
 | These are middleware that have been determined to be necessary regardless
-| of the application, therefore they are defined outside of the Route
-| Service Provider.
+| of the application, therefore they are defined outside of the application
+| factory.
 |
 */
 
-// server.use(bodyParser.json())
+server.use(bodyParser.json())
 
-// server.use(bodyParser.urlencoded({ extended: true }))
+  .use(bodyParser.urlencoded({ extended: true }))
 
-// server.use(helmet())
+  .use(helmet())
 
-// server.use(cookieParser())
+  .use(cookieParser())
 
-
-/*
-|--------------------------------------------------------------------------
-| Register Routes and Middleware
-|--------------------------------------------------------------------------
-|
-| Register all routes and middleware for the application
-|
-*/
-
-const server = new RouteServiceProvider()
+  .use(morgan('tiny', {
+    stream: {
+      write: function (message: string): void {
+        logger.info(message.trim())
+      }
+    }
+  }))
 
 
 /*
@@ -85,12 +86,18 @@ const server = new RouteServiceProvider()
 | Start the application listening on the desired port.
 |
 */
+
+server.boot()
+
 https
-  .createServer({
-    key: readFileSync(config.get('app.key')),
-    cert: readFileSync(config.get('app.cert')),
-    passphrase: config.get('app.passphrase')
-  }, server.app)
+  .createServer(
+    {
+      key: readFileSync(config.get('app.tls.key')),
+      cert: readFileSync(config.get('app.tls.cert')),
+      passphrase: config.get('app.tls.passphrase')
+    },
+    server.app
+  )
   .listen(config.get('app.port'), () => {
     logger.info('Server started!')
   })

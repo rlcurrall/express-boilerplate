@@ -1,7 +1,7 @@
 import csurf from 'csurf'
 import { injectable } from 'tsyringe'
-import SomeClass from 'app/services/some-service'
-import { Request, Response, Router } from 'express'
+import SomeService from 'app/services/some-service'
+import { Request, Response, Router, NextFunction } from 'express'
 import session from 'lib/foundation/middleware/session'
 import { IController } from 'lib/foundation/interfaces'
 import { validationResult, param } from 'express-validator'
@@ -13,7 +13,7 @@ export default class HomeController implements IController {
 
   public router: Router = Router()
 
-  constructor(private someClass: SomeClass) {
+  constructor(private someService: SomeService) {
 
     this.router.use(session)
 
@@ -32,33 +32,35 @@ export default class HomeController implements IController {
 
   }
 
-  public index(req: Request, res: Response): Response {
+  public index(req: Request, res: Response, next: NextFunction): void {
 
     if (req.session.views) {
 
       req.session.views++
 
-      return res
+      res
         .status(200)
         .send(`Welcome back. Visit #: ${req.session.views}`)
 
     } else {
 
-      this.someClass.someMethod()
+      this.someService.someMethod()
 
       req.session.views = 1
 
-      return res
+      res
         .status(200)
         .send('Hello!')
 
     }
 
+    next()
+
   }
 
   public test(req: Request, res: Response): Response {
 
-    this.someClass.someMethod()
+    this.someService.someMethod()
 
     const errors = validationResult(req)
 

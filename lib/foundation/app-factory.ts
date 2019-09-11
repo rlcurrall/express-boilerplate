@@ -1,11 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import express, { Express, RequestHandler } from 'express'
-import { IController } from '../interfaces'
-import helmet from 'helmet'
-import bodyParser from 'body-parser'
-import cookieParser from 'cookie-parser'
+import { IController } from 'lib/foundation/interfaces'
 
-export default class RouteServiceProvider {
+export default class AppFactory {
 
   public app: Express
 
@@ -17,13 +14,21 @@ export default class RouteServiceProvider {
 
     this.app = express()
 
-    this.app.use(bodyParser.json())
+  }
 
-    this.app.use(bodyParser.urlencoded({ extended: true }))
+  public boot(): void {
 
-    this.app.use(helmet())
+    this.registerMiddleware()
 
-    this.app.use(cookieParser())
+    this.mapRoutes()
+
+  }
+
+  public use(handler: RequestHandler): AppFactory {
+
+    this.app.use(handler)
+
+    return this
 
   }
 

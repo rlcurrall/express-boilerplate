@@ -1,0 +1,64 @@
+const start = new Date()
+/*
+|------------------------------------------------------------------------------
+| Initialize Typescript Interpreter
+|------------------------------------------------------------------------------
+|
+| Use ts-node to interpret typescript files.
+|
+*/
+
+const tsNode = require('ts-node')
+tsNode.register()
+
+
+/*
+|------------------------------------------------------------------------------
+| Register Typescript Paths
+|------------------------------------------------------------------------------
+|
+| Register all typescript paths from the tsconfig.json file.
+|
+*/
+
+const tsconfigPaths = require('tsconfig-paths')
+tsconfigPaths.register()
+
+
+/*
+|------------------------------------------------------------------------------
+| Initialize DI Container
+|------------------------------------------------------------------------------
+|
+| Initialize the dependency injection container so classes that utilize it
+| can be properly loaded and utilized.
+|
+| NOTE: Registering with the dependency injection container causes a
+| performance hit, which increases as more modules are registered. Consuming
+| these modules has a negligible affect on performance, so the solution would
+| be to have separate service providers that register as few modules as
+| possible.
+|
+*/
+
+require('reflect-metadata')
+require('./app/providers/route-service-provider')
+
+
+/**
+ * Goofing around...
+ */
+const args = process.argv.slice(2)
+console.log(args)
+console.log('running a command')
+
+
+const logger = require('./lib/foundation/helpers/logger').default
+// const { logger, resolve } = require('./lib/foundation/helpers')
+// const SomeService = require('./app/services/some-service').default
+// const HomeController = require('./app/controllers/home-controller').default
+// const ApiController = require('./app/controllers/api-controller').default
+
+logger.info('testing')
+
+console.log('Elapsed: ', new Date() - start)

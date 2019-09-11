@@ -43,6 +43,7 @@ tsconfigPaths.register()
 
 require('reflect-metadata')
 require('./app/providers/route-service-provider')
+// require('./app/providers/app-service-provider') // notice the difference in elapsed time (only toggle one at a time)
 
 
 /**

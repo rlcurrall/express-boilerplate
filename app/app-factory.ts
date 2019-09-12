@@ -1,5 +1,5 @@
+import { container } from 'tsyringe'
 import { RequestHandler } from 'express'
-import { resolve } from 'lib/foundation/helpers'
 import BaseAppFactory from 'lib/foundation/app-factory'
 import { IController } from 'lib/foundation/interfaces'
 
@@ -15,8 +15,8 @@ export default class AppFactory extends BaseAppFactory {
    */
   protected controllers: Array<IController> = [
 
-    resolve<ApiController>(ApiController),
-    resolve<HomeController>(HomeController)
+    container.resolve<ApiController>(ApiController),
+    container.resolve<HomeController>(HomeController)
 
   ]
 

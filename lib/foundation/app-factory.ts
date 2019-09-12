@@ -16,15 +16,17 @@ export default class AppFactory {
 
   }
 
-  public boot(): void {
+  public boot(): this {
 
     this.registerMiddleware()
 
     this.mapRoutes()
 
+    return this
+
   }
 
-  public use(handler: RequestHandler): AppFactory {
+  public use(handler: RequestHandler): this {
 
     this.app.use(handler)
 

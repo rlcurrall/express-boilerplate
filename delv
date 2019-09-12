@@ -4,62 +4,43 @@ const start = new Date()
 | Initialize Typescript Interpreter
 |------------------------------------------------------------------------------
 |
-| Use ts-node to interpret typescript files.
+| Use ts-node to interpret typescript files, then register all paths from the
+| tsconfig.json file using tsconfig-paths.
 |
 */
 
-const tsNode = require('ts-node')
-tsNode.register()
+require('ts-node').register()
 
-
-/*
-|------------------------------------------------------------------------------
-| Register Typescript Paths
-|------------------------------------------------------------------------------
-|
-| Register all typescript paths from the tsconfig.json file.
-|
-*/
-
-const tsconfigPaths = require('tsconfig-paths')
-tsconfigPaths.register()
-
-
-/*
-|------------------------------------------------------------------------------
-| Initialize DI Container
-|------------------------------------------------------------------------------
-|
-| Initialize the dependency injection container so classes that utilize it
-| can be properly loaded and utilized.
-|
-| NOTE: Registering with the dependency injection container causes a
-| performance hit, which increases as more modules are registered. Consuming
-| these modules has a negligible affect on performance, so the solution would
-| be to have separate service providers that register as few modules as
-| possible.
-|
-*/
-
-require('reflect-metadata')
-require('./app/providers/route-service-provider')
-// require('./app/providers/app-service-provider') // notice the difference in elapsed time (only toggle one at a time)
+require('tsconfig-paths').register()
 
 
 /**
  * Goofing around...
  */
+
+require('reflect-metadata')
+const fs = require('fs')
 const args = process.argv.slice(2)
-console.log(args)
-console.log('running a command')
 
 
-const logger = require('./lib/foundation/helpers/logger').default
-// const { logger, resolve } = require('./lib/foundation/helpers')
-// const SomeService = require('./app/services/some-service').default
-// const HomeController = require('./app/controllers/home-controller').default
-// const ApiController = require('./app/controllers/api-controller').default
+if (args.length) {
 
-logger.info('testing')
+  if (args[0] === 'command' && args[1]) {
+
+    const command = args[1]
+
+    if (fs.existsSync(`./app/commands/${command}.ts`)) {
+
+      require(`./app/commands/${command}.ts`)
+
+    } else if (fs.existsSync(`./lib/commands/${command}.ts`)) {
+
+      require(`./lib/commands/${command}.ts`)
+
+    }
+
+  }
+
+}
 
 console.log('Elapsed: ', new Date() - start)

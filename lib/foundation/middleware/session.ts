@@ -6,7 +6,7 @@ export default session({
   saveUninitialized: true,
   secret: config.get('app.secret'),
   cookie: {
-    secure: config.get('app.env') === 'production',
+    secure: false,
     maxAge: 60000
   }
 })

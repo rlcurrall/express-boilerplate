@@ -19,27 +19,32 @@ require('tsconfig-paths').register()
  */
 
 require('reflect-metadata')
-const fs = require('fs')
+// const fs = require('fs')
 const args = process.argv.slice(2)
 
 
 if (args.length) {
 
-  if (args[0] === 'command' && args[1]) {
+  if (args[0] === 'route:list' || args[0] === 'r:l') {
 
-    const command = args[1]
-
-    if (fs.existsSync(`./app/commands/${command}.ts`)) {
-
-      require(`./app/commands/${command}.ts`)
-
-    } else if (fs.existsSync(`./lib/commands/${command}.ts`)) {
-
-      require(`./lib/commands/${command}.ts`)
-
-    }
-
+    require('./lib/commands/route:list')
   }
+
+  // if (args[0] === 'command' && args[1]) {
+
+  //   const command = args[1]
+
+  //   if (fs.existsSync(`./app/commands/${command}.ts`)) {
+
+  //     require(`./app/commands/${command}.ts`)
+
+  //   } else if (fs.existsSync(`./lib/commands/${command}.ts`)) {
+
+  //     require(`./lib/commands/${command}.ts`)
+
+  //   }
+
+  // }
 
 }
 

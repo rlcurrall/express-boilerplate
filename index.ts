@@ -1,13 +1,3 @@
-import 'reflect-metadata'
-import https from 'https'
-import config from 'config'
-import { readFileSync } from 'fs'
-import morgan from 'morgan'
-import helmet from 'helmet'
-import bodyParser from 'body-parser'
-import cookieParser from 'cookie-parser'
-
-
 /*
 |--------------------------------------------------------------------------
 | Bootstrap & Imports
@@ -20,8 +10,9 @@ import cookieParser from 'cookie-parser'
 */
 
 import './bootstrap'
-import './app/providers/app-service-provider'
-
+import http from 'http'
+import config from 'config'
+import { logStart } from './lib/foundation/helpers'
 
 /*
 |--------------------------------------------------------------------------
@@ -33,8 +24,8 @@ import './app/providers/app-service-provider'
 |
 */
 
-import { logger } from './lib/foundation/helpers'
-import AppFactory from './app/app-factory'
+import './app/providers/app.provider'
+import AppFactory from './app/app.factory'
 
 
 /*
@@ -49,33 +40,7 @@ import AppFactory from './app/app-factory'
 
 const server = new AppFactory()
 
-
-/*
-|--------------------------------------------------------------------------
-| Default Global Middleware
-|--------------------------------------------------------------------------
-|
-| These are middleware that have been determined to be necessary regardless
-| of the application, therefore they are defined outside of the application
-| factory.
-|
-*/
-
-server.use(bodyParser.json())
-
-  .use(bodyParser.urlencoded({ extended: true }))
-
-  .use(helmet())
-
-  .use(cookieParser())
-
-  .use(morgan('tiny', {
-    stream: {
-      write: function (message: string): void {
-        logger.info(message.trim())
-      }
-    }
-  }))
+server.boot()
 
 
 /*
@@ -87,17 +52,7 @@ server.use(bodyParser.json())
 |
 */
 
-server.boot()
+const PORT = config.get('app.port')
 
-https
-  .createServer(
-    {
-      key: readFileSync(config.get('app.tls.key')),
-      cert: readFileSync(config.get('app.tls.cert')),
-      passphrase: config.get('app.tls.passphrase')
-    },
-    server.app
-  )
-  .listen(config.get('app.port'), () => {
-    logger.info('Server started!')
-  })
+http.createServer(server.app).listen(PORT, logStart)
+

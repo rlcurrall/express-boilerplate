@@ -1,5 +1,3 @@
-// import { container } from 'tsyringe'
-
 /*
 |--------------------------------------------------------------------------
 | Define DI Providers
@@ -11,5 +9,4 @@
 |
 */
 
-// Do not currently have a use case for this type of dependency injection...
-// container
+import './middleware.provider'

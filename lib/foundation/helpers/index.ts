@@ -1,7 +1,3 @@
-import { container } from 'tsyringe'
+export { logger, logStart } from './logger'
 
-export function resolve<T>(token: any): T {
-  return container.resolve(token)
-}
-
-export { default as logger } from './logger'
+export { getPublicIp } from './os'

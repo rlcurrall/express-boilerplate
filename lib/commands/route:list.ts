@@ -1,10 +1,9 @@
-import AppFactory from 'app/app-factory'
-
-const app = new AppFactory().boot().app
+import 'app/providers/middleware.provider'
+import AppFactory from 'app/app.factory'
 
 const routes: any[] = []
 
-function split (thing: any): any {
+function split(thing: any): any {
   if (typeof thing === 'string') {
     return thing.split('/')
   } else if (thing.fast_slash) {
@@ -20,12 +19,12 @@ function split (thing: any): any {
   }
 }
 
-function registerRoute (path: any, layer: any): void {
+function registerRoute(path: any[], layer: any): void {
   if (layer.route) {
     layer.route.stack.forEach(registerRoute.bind(null, path.concat(split(layer.route.path))))
   } else if (layer.name === 'router' && layer.handle.stack) {
     layer.handle.stack.forEach(registerRoute.bind(null, path.concat(split(layer.regexp))))
-  } else if (layer.method && layer.name !== 'middleware') {
+  } else if (layer.method) {
     const routeData = {
       method: layer.method.toUpperCase(),
       path: '/' + path.concat(split(layer.regexp)).filter(Boolean).join('/')
@@ -34,27 +33,8 @@ function registerRoute (path: any, layer: any): void {
   }
 }
 
-function printRoutes(routes: any[]): void {
-  const lines = []
-  let max = 0
-  for (const r of routes) {
-    const msg = `| ${r.method}\t| ${r.path}`
-    lines.push(msg)
-    if (msg.length > max) max = msg.length
-  }
+const server = new AppFactory().boot()
 
-  max += 4
-
-  // console.log('-'.repeat(max))
-  // const header = '| Method\t|'
-  // console.log(`${header}${' '.repeat(max - header.length - 4)} |`)
-  console.log('-'.repeat(max))
-  for (const l of lines) {
-    console.log(`${l}${' '.repeat(max - l.length - 4)} |`)
-    console.log('-'.repeat(max))
-  }
-}
-
+const app = server.app
 app._router.stack.forEach(registerRoute.bind(null, []))
-
-printRoutes(routes)
+console.table(routes, ['method', 'path'])

@@ -1,4 +1,4 @@
-import { config } from 'dotenv'
+import 'reflect-metadata'
 
 /*
 |--------------------------------------------------------------------------
@@ -8,5 +8,15 @@ import { config } from 'dotenv'
 | Load contents of the `.env` file.
 |
 */
+import './dotenv'
 
-config()
+/*
+|--------------------------------------------------------------------------
+| Register Dependency Injection Container
+|--------------------------------------------------------------------------
+|
+| Load contents of the `.env` file.
+|
+*/
+// import '../app/providers/app-service-provider'
+

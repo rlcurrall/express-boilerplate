@@ -13,18 +13,23 @@ import config from 'config'
 |
 */
 
+function printLine(): void {
+  console.log('\n', '—'.repeat(process.stdout.columns - 2), '\n')
+}
+
 export function logStart(): void {
 
   console.clear()
-  console.log(
-    `Server started!
 
-    Available locally at:\t<http://127.0.0.1:${config.get('app.port')}>
-    Available publicly at:\t<http://${getPublicIp()}:${config.get('app.port')}>
-    `
+  printLine()
+
+  console.log(`\tServer started!
+
+    \tAvailable locally at:\t<http://127.0.0.1:${config.get('app.port')}>
+    \tAvailable publicly at:\t<http://${getPublicIp()}:${config.get('app.port')}>`
   )
 
-  console.table([])
+  printLine()
 
 }
 
@@ -55,7 +60,7 @@ export const logger: Logger = createLogger({
   transports: [
     new winstonDailyRotateFile({
       level: 'info',
-      filename: 'storage/logs/%DATE%-info.log',
+      filename: 'temp/logs/%DATE%-info.log',
       datePattern: 'YYYY-MM-DD',
       zippedArchive: true,
       maxSize: '20m',
@@ -63,7 +68,7 @@ export const logger: Logger = createLogger({
     }),
     new winstonDailyRotateFile({
       level: 'error',
-      filename: 'storage/logs/%DATE%-info.log',
+      filename: 'temp/logs/%DATE%-info.log',
       datePattern: 'YYYY-MM-DD',
       zippedArchive: true,
       maxSize: '20m',

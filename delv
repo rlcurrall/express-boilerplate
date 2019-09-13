@@ -1,4 +1,4 @@
-const start = new Date()
+console.time('cli-run')
 /*
 |------------------------------------------------------------------------------
 | Initialize Typescript Interpreter
@@ -48,4 +48,4 @@ if (args.length) {
 
 }
 
-console.log('Elapsed: ', new Date() - start)
+console.timeEnd('cli-run')

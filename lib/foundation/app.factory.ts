@@ -1,12 +1,13 @@
 import morgan from 'morgan'
 import helmet from 'helmet'
 import bodyParser from 'body-parser'
-import { Middleware } from './typings'
 import cookieParser from 'cookie-parser'
-import { logger, config } from 'lib/foundation/helpers'
-import { container, InjectionToken } from 'tsyringe'
 import express, { Express } from 'express'
-import BaseController from 'lib/foundation/base.controller'
+import { container, InjectionToken } from 'tsyringe'
+
+import { Middleware } from './typings'
+import { logger, config } from './helpers'
+import BaseController from './base.controller'
 
 export default class AppFactory {
 

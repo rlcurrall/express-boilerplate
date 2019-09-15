@@ -24,7 +24,7 @@ import { logStart, config } from './lib/foundation/helpers'
 */
 
 import './app/providers/app.provider'
-import AppFactory from './app/app.factory'
+import AppFactory from './app/server'
 
 
 /*

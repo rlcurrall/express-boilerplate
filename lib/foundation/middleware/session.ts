@@ -1,12 +1,13 @@
-import { config } from 'lib/foundation/helpers'
+import { config } from '../helpers'
 import session from 'express-session'
 
 export default session({
+  name: 'sessionId',
   resave: false,
   saveUninitialized: true,
-  secret: config('app.secret') as string,
+  secret: config('app.key') as string,
   cookie: {
-    secure: false,
+    secure: config('app.env') === 'production',
     maxAge: 60000
-  }
+  },
 })

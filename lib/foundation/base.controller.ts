@@ -1,7 +1,8 @@
 import { Router } from 'express'
 import { container, InjectionToken } from 'tsyringe'
+
 import { Middleware } from './typings'
-import { IController } from 'lib/foundation/interfaces'
+import { IController } from './interfaces'
 
 export default class BaseController implements IController {
 

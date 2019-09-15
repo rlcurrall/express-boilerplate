@@ -1,7 +1,14 @@
 import { config as dotenv } from 'dotenv'
-import { config } from 'lib/foundation/helpers/file'
-
 dotenv()
+import { config } from '../foundation/helpers'
+// import ConfigManager from '../foundation/config'
 
-const test = config('db.test')
-console.log(typeof test, test)
+
+console.log(config('app.env'))
+
+// const configManager = new ConfigManager()
+
+// console.log(configManager.getConfig('app.env'))
+
+// const test = config('db.test')
+// console.log(typeof test, test)

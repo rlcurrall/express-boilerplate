@@ -1,5 +1,6 @@
-import 'app/providers/middleware.provider'
-import AppFactory from 'app/app.factory'
+/* eslint-disable @typescript-eslint/no-var-requires */
+require(`${process.cwd()}/app/providers/middleware.provider`)
+const AppFactory = require(`${process.cwd()}/app/server`).default
 
 const routes: any[] = []
 

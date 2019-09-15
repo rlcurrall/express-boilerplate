@@ -10,13 +10,4 @@ import 'reflect-metadata'
 */
 import './dotenv'
 
-/*
-|--------------------------------------------------------------------------
-| Register Dependency Injection Container
-|--------------------------------------------------------------------------
-|
-| Load contents of the `.env` file.
-|
-*/
-// import '../app/providers/app-service-provider'
-
+import './config'

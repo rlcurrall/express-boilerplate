@@ -1,7 +1,9 @@
-import winstonDailyRotateFile from 'winston-daily-rotate-file'
-import { createLogger, transports, format, Logger } from 'winston'
-import { getPublicIp } from './os'
 import { config } from './file'
+import { getPublicIp } from './os'
+import { Format } from 'logform'
+import TransportStream from 'winston-transport'
+import { createLogger, format, Logger } from 'winston'
+import winstonDailyRotateFile from 'winston-daily-rotate-file'
 
 
 /*
@@ -42,41 +44,36 @@ export function logStart(): void {
 |
 */
 
-const { combine, timestamp, printf, align } = format
-const { Console } = transports
+const formats = config('logger.formats') as Format[]
+
+const appTransports = [
+  new winstonDailyRotateFile({
+    level: 'info',
+    filename: 'temp/logs/%DATE%-info.log',
+    datePattern: 'YYYY-MM-DD',
+    zippedArchive: true,
+    maxSize: '20m',
+    maxFiles: '14d',
+  }),
+  new winstonDailyRotateFile({
+    level: 'error',
+    filename: 'temp/logs/%DATE%-error.log',
+    datePattern: 'YYYY-MM-DD',
+    zippedArchive: true,
+    maxSize: '20m',
+    maxFiles: '14d',
+  }),
+  ...config('logger.transports') as TransportStream[]
+]
 
 export const logger: Logger = createLogger({
 
   exitOnError: false,
 
-  format: combine(
-    timestamp(),
-    align(),
-    printf(({ level, message, label, timestamp }) => {
-      return `${timestamp} [${label || 'App'}] ${level}: ${message}`
-    })
-  ),
+  format: format.combine(...formats),
 
-  transports: [
-    new winstonDailyRotateFile({
-      level: 'info',
-      filename: 'temp/logs/%DATE%-info.log',
-      datePattern: 'YYYY-MM-DD',
-      zippedArchive: true,
-      maxSize: '20m',
-      maxFiles: '14d',
-    }),
-    new winstonDailyRotateFile({
-      level: 'error',
-      filename: 'temp/logs/%DATE%-info.log',
-      datePattern: 'YYYY-MM-DD',
-      zippedArchive: true,
-      maxSize: '20m',
-      maxFiles: '14d',
-    }),
-    new Console()
-  ]
+  transports: appTransports
 
 })
 
-// export default logger
+export default logger

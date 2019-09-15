@@ -1,11 +1,9 @@
 import crypto from 'crypto'
 
-export async function generateKey(): Promise<string> {
+export function generateKey(): string {
 
-  let token: string
+  const key = crypto.randomFillSync(Buffer.alloc(36)).toString('hex')
 
-  await crypto.randomBytes(48, (err, buffer) => token = buffer.toString('hex'))
-
-  return token
+  return key
 
 }

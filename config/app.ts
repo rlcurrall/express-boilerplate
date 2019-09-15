@@ -6,6 +6,12 @@ export default {
 
   port: process.env.APP_PORT || 3000,
 
-  trustProxy: process.env.APP_TRUST_PROXY || false
+  trustProxy: process.env.APP_TRUST_PROXY || false,
+
+  key: {
+
+    value: 'hello!'
+
+  }
 
 }

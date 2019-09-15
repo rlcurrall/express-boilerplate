@@ -11,8 +11,7 @@
 
 import './bootstrap'
 import http from 'http'
-import config from 'config'
-import { logStart, generateKey } from './lib/foundation/helpers'
+import { logStart, config } from './lib/foundation/helpers'
 
 /*
 |--------------------------------------------------------------------------
@@ -52,8 +51,6 @@ server.boot()
 |
 */
 
-const PORT = config.get('app.port')
+const PORT = config('app.port')
 
 http.createServer(server.app).listen(PORT, logStart)
-
-// console.log(generateKey())

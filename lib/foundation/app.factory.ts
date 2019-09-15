@@ -1,10 +1,9 @@
-import config from 'config'
 import morgan from 'morgan'
 import helmet from 'helmet'
 import bodyParser from 'body-parser'
 import { Middleware } from './typings'
 import cookieParser from 'cookie-parser'
-import { logger } from 'lib/foundation/helpers'
+import { logger, config } from 'lib/foundation/helpers'
 import { container, InjectionToken } from 'tsyringe'
 import express, { Express } from 'express'
 import BaseController from 'lib/foundation/base.controller'
@@ -70,7 +69,7 @@ export default class AppFactory {
    */
   private defaultMiddleware(): void {
 
-    if (config.get('app.trustProxy')) {
+    if (config('app.trustProxy')) {
 
       this.app.enable('trust proxy')
 

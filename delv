@@ -27,7 +27,26 @@ if (args.length) {
 
   if (args[0] === 'route:list' || args[0] === 'r:l') {
 
-    require('./lib/commands/route:list')
+    require('./lib/commands/route.list')
+
+    return
+
+  }
+
+  if (args[0] === 'key:generate') {
+
+    require('./lib/commands/key.gen')
+
+    return
+
+  }
+
+  if (args[0] === 'test') {
+
+    require('./lib/commands/test')
+
+    return
+
   }
 
   // if (args[0] === 'command' && args[1]) {

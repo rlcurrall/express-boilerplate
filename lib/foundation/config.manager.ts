@@ -29,9 +29,8 @@ export default class ConfigManager {
 
       if (stats.isFile()) {
 
-        const data = require(currDir).default
-
         const key = e.split('.')[0]
+        const data = require(currDir).default
 
         if (!ids.length) {
 
@@ -71,10 +70,13 @@ export default class ConfigManager {
   public getConfig(ids: string): unknown {
 
     const idArr = ids.split('.')
-
     let temp = this.configData
 
     for (const i of idArr) {
+
+      if (temp[i] === undefined) {
+        return undefined
+      }
 
       temp = temp[i]
 

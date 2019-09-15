@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { container } from 'tsyringe'
-import ConfigManager from '../config'
+import ConfigManager from '../config.manager'
 
 export function config(key: string): unknown {
 

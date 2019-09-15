@@ -25,11 +25,12 @@ export function logStart(): void {
 
   printLine()
 
-  console.log(`\tServer started!
+  console.log(`
+    \tServer started!
 
     \tAvailable locally at:\t<http://127.0.0.1:${config('app.port')}>
-    \tAvailable publicly at:\t<http://${getPublicIp()}:${config('app.port')}>`
-  )
+    \tAvailable publicly at:\t<http://${getPublicIp()}:${config('app.port')}>
+  `)
 
   printLine()
 

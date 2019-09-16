@@ -71,9 +71,9 @@ export default class HomeController extends Controller {
 
   public testTemplate(req: Request, res: Response): Response {
 
-    res.render('test', { name: 'Robb' })
+    res.render('test.njk', { name: 'Robb' })
 
-    return res.send()
+    return res
 
   }
 

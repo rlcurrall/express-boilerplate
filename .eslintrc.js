@@ -1,15 +1,17 @@
 module.exports = {
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint"],
+  plugins: ["@typescript-eslint", "html"],
   env: {
     node: true
   },
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:html"
+    "plugin:@typescript-eslint/recommended"
   ],
+  settings: {
+    "html/html-extensions": [".html", ".njk"]
+  },
   parserOptions: {
     sourceType: "module",
     ecmaVersion: "2018"

@@ -42,7 +42,8 @@ export default class Server extends BaseServer {
 
     nunjucks.configure('views', {
       autoescape: true,
-      express: this.app
+      express: this.app,
+
     })
 
   }

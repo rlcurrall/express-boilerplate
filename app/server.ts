@@ -1,19 +1,19 @@
 import { InjectionToken } from 'tsyringe'
 import { Middleware } from 'lib/foundation/typings'
-import BaseAppFactory from 'lib/foundation/app.factory'
+import BaseServer from 'lib/foundation/server'
 
 import ApiController from 'app/controllers/api.controller'
 import HomeController from 'app/controllers/home.controller'
-import BaseController from 'lib/foundation/base.controller'
+import Controller from 'lib/foundation/routing/controller'
 
-export default class AppFactory extends BaseAppFactory {
+export default class Server extends BaseServer {
 
   /**
    * Register and resolve all controllers that will be used by the application.
    *
    * @member { Array<InjectionToken<BaseController>> }
    */
-  protected controllers: Array<InjectionToken<BaseController>> = [
+  protected controllers: Array<InjectionToken<Controller>> = [
 
     ApiController,
     HomeController,

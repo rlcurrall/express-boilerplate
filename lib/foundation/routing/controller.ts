@@ -1,10 +1,10 @@
 import { Router } from 'express'
 import { container, InjectionToken } from 'tsyringe'
 
-import { Middleware } from './typings'
-import { IController } from './interfaces'
+import { Middleware } from '../typings'
+import { IController } from '../interfaces'
 
-export default class BaseController implements IController {
+export default class Controller implements IController {
 
   public router: Router
 

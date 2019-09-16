@@ -6,10 +6,10 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "cross-env NODE_ENV=production node -r tsconfig-paths/register dist/index.js",
     "lint": "eslint .",
-    "local:dev": "ts-node -r tsconfig-paths/register index.ts",
-    "local:prod": "cross-env NODE_ENV=production ts-node -r tsconfig-paths/register index.ts",
+    "production": "npm build && npm start",
+    "start": "cross-env NODE_ENV=production node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/index.js",
+    "start:dev": "ts-node -r tsconfig-paths/register index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "ts-node-dev -r tsconfig-paths/register index.ts"
   },
@@ -17,7 +17,6 @@
   "devDependencies": {
     "eslint": "^6.3.0",
     "eslint-plugin-node": "^10.0.0",
-    "ts-node": "^8.3.0",
     "ts-node-dev": "^1.0.0-pre.42"
   },
   "dependencies": {
@@ -42,6 +41,7 @@
     "helmet": "^3.21.0",
     "morgan": "^1.9.1",
     "reflect-metadata": "^0.1.13",
+    "ts-node": "^8.4.1",
     "tsconfig-paths": "^3.8.0",
     "tsyringe": "^3.3.0",
     "typescript": "^3.6.3",

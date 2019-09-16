@@ -1,10 +1,10 @@
 import { injectable } from 'tsyringe'
 import { Request, Response } from 'express'
 import SomeService from 'app/services/some-service'
-import BaseController from 'lib/foundation/base.controller'
+import Controller from 'lib/foundation/routing/controller'
 
 @injectable()
-export default class ApiController extends BaseController {
+export default class ApiController extends Controller {
 
   public prefix = '/api'
 

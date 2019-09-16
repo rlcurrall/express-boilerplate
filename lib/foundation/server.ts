@@ -7,13 +7,13 @@ import { container, InjectionToken } from 'tsyringe'
 
 import { Middleware } from './typings'
 import { logger, config } from './helpers'
-import BaseController from './base.controller'
+import Controller from './routing/controller'
 
-export default class AppFactory {
+export default class Server {
 
   public app: Express
 
-  protected controllers: Array<InjectionToken<BaseController>>
+  protected controllers: Array<InjectionToken<Controller>>
 
   protected middleware: Array<Middleware>
 

@@ -1,11 +1,11 @@
 import { injectable } from 'tsyringe'
-import BaseController from 'lib/foundation/base.controller'
+import Controller from 'lib/foundation/routing/controller'
 import { Request, Response, NextFunction } from 'express'
 
 import SomeService from 'app/services/some-service'
 
 @injectable()
-export default class HomeController extends BaseController {
+export default class HomeController extends Controller {
 
   /**
    * Route prefix for the controller.

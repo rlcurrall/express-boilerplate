@@ -9,9 +9,9 @@
 |
 */
 
-import './bootstrap'
+import 'bootstrap'
 import http from 'http'
-import { logStart, config } from './lib/foundation/helpers'
+import { logStart, config } from 'lib/foundation/helpers'
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +23,8 @@ import { logStart, config } from './lib/foundation/helpers'
 |
 */
 
-import './app/providers/app.provider'
-import AppFactory from './app/server'
+import 'app/providers/app.provider'
+import Server from 'app/server'
 
 
 /*
@@ -37,7 +37,7 @@ import AppFactory from './app/server'
 |
 */
 
-const server = new AppFactory()
+const server = new Server()
 
 server.boot()
 

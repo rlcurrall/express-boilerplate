@@ -20,7 +20,7 @@ export default class ConfigManager {
 
   private loadDir(configPath: string, ids: Array<string>): void {
 
-    const dirContents = fs.readdirSync(configPath)
+    const dirContents = fs.readdirSync(configPath).filter(f => !/.*(\.d\.ts|\.map)/.test(f))
 
     for (const e of dirContents) {
 

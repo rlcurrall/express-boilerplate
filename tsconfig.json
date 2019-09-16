@@ -14,14 +14,20 @@
         "preserveConstEnums": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "baseUrl": "."
+        "baseUrl": ".",
+        "paths": {
+            "app/*": ["./app/*"],
+            "bootstrap": ["./bootstrap/index"],
+            "bootstrap/*": ["./bootstrap/*"],
+            "config/*": ["./config/*"],
+            "lib/*": ["./lib/*"]
+        }
     },
     "include": [
         "app/**/*.ts",
         "config/**/*.ts",
         "database/**/*.ts",
         "lib/**/*.ts",
-        "app/routes/**/*.ts",
         "index.ts"
     ],
     "exclude": [

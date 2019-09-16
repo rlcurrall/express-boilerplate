@@ -1,13 +1,11 @@
-import morgan from 'morgan'
 import helmet from 'helmet'
-import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
-import express, { Express } from 'express'
 import { container, InjectionToken } from 'tsyringe'
+import express, { Express, json, urlencoded } from 'express'
 
 import { Middleware } from './typings'
-import { logger, config } from './helpers'
 import Controller from './routing/controller'
+import { config, logStart } from './helpers'
 
 export default class Server {
 
@@ -25,9 +23,27 @@ export default class Server {
 
   public boot(): this {
 
+    this.templateEngine()
+
     this.registerMiddleware()
 
     this.mapRoutes()
+
+    return this
+
+  }
+
+  public listen(callback?: Function): this {
+
+    this.app.listen(config('app.port'), () => {
+
+      logStart()
+
+      if (callback) {
+        callback()
+      }
+
+    })
 
     return this
 
@@ -59,6 +75,12 @@ export default class Server {
 
   }
 
+  protected templateEngine(): void {
+
+    // Configure template engine
+
+  }
+
   /**
    * @name defaultMiddleware
    *
@@ -78,21 +100,13 @@ export default class Server {
 
     this.app
 
-      .use(bodyParser.json())
+      .use(json())
 
-      .use(bodyParser.urlencoded({ extended: true }))
+      .use(urlencoded({ extended: true }))
 
       .use(helmet())
 
       .use(cookieParser())
-
-      .use(morgan('tiny', {
-        stream: {
-          write: function (message: string): void {
-            logger.info(message.trim())
-          }
-        }
-      }))
 
   }
 

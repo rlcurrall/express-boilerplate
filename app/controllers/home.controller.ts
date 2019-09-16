@@ -35,6 +35,8 @@ export default class HomeController extends Controller {
 
     this.router.get('/', (req, res, next) => this.index(req, res, next))
 
+    this.router.get('/test', (req, res) => this.testTemplate(req, res))
+
     this.router.get('/test/:id/other/:other', (req, res) => this.test(req, res))
 
     return this
@@ -64,6 +66,14 @@ export default class HomeController extends Controller {
     }
 
     next()
+
+  }
+
+  public testTemplate(req: Request, res: Response): Response {
+
+    res.render('test', { name: 'Robb' })
+
+    return res.send()
 
   }
 

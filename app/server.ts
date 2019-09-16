@@ -1,10 +1,12 @@
 import { InjectionToken } from 'tsyringe'
-import { Middleware } from 'lib/foundation/typings'
 import BaseServer from 'lib/foundation/server'
+import { Middleware } from 'lib/foundation/typings'
+import Controller from 'lib/foundation/routing/controller'
+import nunjucks from 'nunjucks'
 
 import ApiController from 'app/controllers/api.controller'
 import HomeController from 'app/controllers/home.controller'
-import Controller from 'lib/foundation/routing/controller'
+import morganLogger from 'lib/foundation/middleware/morgan.logger'
 
 export default class Server extends BaseServer {
 
@@ -28,7 +30,21 @@ export default class Server extends BaseServer {
   protected middleware: Array<Middleware> = [
 
     // Place custom global middleware here
+    morganLogger
 
   ]
+
+  protected templateEngine(): void {
+
+    console.log('register engine')
+
+    this.app.set('view engine', 'nunjucks')
+
+    nunjucks.configure('views', {
+      autoescape: true,
+      express: this.app
+    })
+
+  }
 
 }

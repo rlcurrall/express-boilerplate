@@ -10,8 +10,6 @@
 */
 
 import './bootstrap'
-import http from 'http'
-import { logStart, config } from 'lib/foundation/helpers'
 
 /*
 |--------------------------------------------------------------------------
@@ -32,25 +30,13 @@ import Server from 'app/server'
 | Application Instance
 |--------------------------------------------------------------------------
 |
-| Using the application factory, a new instance of the application will be
-| created.
+| Using the server class to create a new instance of the application. Once
+| created, calling the boot method will start the server.
 |
 */
 
 const server = new Server()
 
-server.boot()
-
-
-/*
-|--------------------------------------------------------------------------
-| Start Application
-|--------------------------------------------------------------------------
-|
-| Start the application listening on the desired port.
-|
-*/
-
-const PORT = config('app.port')
-
-http.createServer(server.app).listen(PORT, logStart)
+server
+  .boot()
+  .listen()

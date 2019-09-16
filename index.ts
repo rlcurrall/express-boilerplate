@@ -9,7 +9,7 @@
 |
 */
 
-import 'bootstrap'
+import './bootstrap'
 import http from 'http'
 import { logStart, config } from 'lib/foundation/helpers'
 

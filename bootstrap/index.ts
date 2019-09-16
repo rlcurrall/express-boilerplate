@@ -1,5 +1,7 @@
 import 'reflect-metadata'
 
+import './register-paths'
+
 /*
 |--------------------------------------------------------------------------
 | Load Environment Variables

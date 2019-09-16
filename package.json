@@ -7,11 +7,11 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint .",
-    "production": "npm build && npm start",
-    "start": "cross-env NODE_ENV=production node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/index.js",
-    "start:dev": "ts-node -r tsconfig-paths/register index.ts",
+    "production": "npm run build && npm start",
+    "start": "cross-env NODE_ENV=production node dist/index.js",
+    "start:dev": "ts-node index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "ts-node-dev -r tsconfig-paths/register index.ts"
+    "watch": "ts-node-dev index.ts"
   },
   "license": "ISC",
   "devDependencies": {

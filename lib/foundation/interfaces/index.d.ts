@@ -7,3 +7,7 @@ export interface IController {
   router: Router;
 
 }
+
+export interface Constructable<T> {
+  new(): T;
+}

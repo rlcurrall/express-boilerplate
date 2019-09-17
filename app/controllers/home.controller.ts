@@ -1,11 +1,12 @@
+import { EventEmitter } from 'events'
 import { injectable } from 'tsyringe'
-import Controller from 'lib/foundation/routing/controller'
+import BaseController from 'lib/foundation/routing/controller'
 import { Request, Response, NextFunction } from 'express'
 
 import SomeService from 'app/services/some-service'
 
 @injectable()
-export default class HomeController extends Controller {
+export default class HomeController extends BaseController {
 
   /**
    * Route prefix for the controller.
@@ -26,7 +27,7 @@ export default class HomeController extends Controller {
    *
    * @param someService Instance of SomeService
    */
-  constructor(private someService: SomeService) { super() }
+  constructor(private someService: SomeService, private eventEmitter: EventEmitter) { super() }
 
   /**
    * Bind all actions to the appropriate routes.
@@ -71,7 +72,9 @@ export default class HomeController extends Controller {
 
   public testTemplate(req: Request, res: Response): Response {
 
-    res.render('test.njk', { name: 'Robb' })
+    res.render('test', { name: 'Robb' })
+
+    this.eventEmitter.emit('someEvent')
 
     return res
 

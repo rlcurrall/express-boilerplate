@@ -36,15 +36,15 @@ export default class Server extends BaseServer {
 
   protected templateEngine(): void {
 
-    console.log('register engine')
+    this.app.engine('njk', nunjucks.render)
+    this.app.set('view engine', 'njk')
 
-    this.app.set('view engine', 'nunjucks')
-
-    nunjucks.configure('views', {
+    const env = nunjucks.configure('views', {
       autoescape: true,
       express: this.app,
-
     })
+
+    nunjucks.precompile('views', { env })
 
   }
 

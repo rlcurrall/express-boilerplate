@@ -1,3 +1,6 @@
+import { container } from 'tsyringe'
+import { EventEmitter } from 'events'
+
 /*
 |--------------------------------------------------------------------------
 | Define DI Providers
@@ -10,3 +13,16 @@
 */
 
 import './middleware.provider'
+
+/*
+|--------------------------------------------------------------------------
+| Register Event Emitter
+|--------------------------------------------------------------------------
+|
+| Register the event emitter for the application.
+|
+*/
+
+import eventEmitter from './event.provider'
+
+container.register(EventEmitter, { useValue: eventEmitter })

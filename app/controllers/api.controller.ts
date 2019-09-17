@@ -1,23 +1,16 @@
 import { injectable } from 'tsyringe'
 import { Request, Response } from 'express'
 import SomeService from 'app/services/some-service'
-import Controller from 'lib/foundation/routing/controller'
+import BaseController from 'lib/foundation/routing/controller'
+import { Controller, Get } from 'lib/foundation/routing/decorators'
 
 @injectable()
-export default class ApiController extends Controller {
-
-  public prefix = '/api'
+@Controller('/api')
+export default class ApiController extends BaseController {
 
   constructor(protected someService: SomeService) { super() }
 
-  protected mapActions(): this {
-
-    this.router.get('/', (req, res) => this.index(req,res))
-
-    return this
-
-  }
-
+  @Get('/')
   public index(req: Request, res: Response): Response {
 
     this.someService.someMethod()

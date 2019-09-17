@@ -27,7 +27,7 @@ export default class Server {
 
     this.registerMiddleware()
 
-    this.mapRoutes()
+    this.mapControllers()
 
     return this
 
@@ -49,15 +49,20 @@ export default class Server {
 
   }
 
-  protected mapRoutes(): void {
+  protected mapControllers(): void {
 
     for (const controller of this.controllers) {
 
-      const c = container.resolve(controller)
+      const prefix = Reflect.getMetadata('prefix', controller)
+      const routes = Reflect.getMetadata('routes', controller)
 
-      c.initialize()
+      const instance = container.resolve(controller)
 
-      this.app.use(c.prefix, c.router)
+      instance
+        .registerMiddleware()
+        .mapActions(routes)
+
+      this.app.use(prefix, instance.router)
 
     }
 

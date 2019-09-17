@@ -1,10 +1,13 @@
 import { Router } from 'express'
+import { RouteDefinition } from '../typings'
 
 export interface IController {
 
-  prefix: string;
-
   router: Router;
+
+  registerMiddleware(): this;
+
+  mapActions(definitions: RouteDefinition[]): this;
 
 }
 

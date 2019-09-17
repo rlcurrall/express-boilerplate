@@ -3,7 +3,7 @@ import { RequestHandler } from 'express'
 export interface RouteDefinition {
   path: string;
   method: 'get' | 'post' | 'put' | 'delete' | 'options';
-  handler: string;
+  handler: Function;
 }
 
 export type Middleware = RequestHandler | RequestHandler[]

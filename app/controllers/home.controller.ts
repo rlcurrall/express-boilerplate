@@ -4,16 +4,11 @@ import BaseController from 'lib/foundation/routing/controller'
 import { Request, Response, NextFunction } from 'express'
 
 import SomeService from 'app/services/some-service'
+import { Controller, Get } from 'lib/foundation/routing/decorators'
 
 @injectable()
+@Controller('/')
 export default class HomeController extends BaseController {
-
-  /**
-   * Route prefix for the controller.
-   *
-   * @var string
-   */
-  public prefix = '/'
 
   /**
    * Middleware to be applied to all routes on the controller.
@@ -29,21 +24,7 @@ export default class HomeController extends BaseController {
    */
   constructor(private someService: SomeService, private eventEmitter: EventEmitter) { super() }
 
-  /**
-   * Bind all actions to the appropriate routes.
-   */
-  protected mapActions(): this {
-
-    this.router.get('/', (req, res, next) => this.index(req, res, next))
-
-    this.router.get('/test', (req, res) => this.testTemplate(req, res))
-
-    this.router.get('/test/:id/other/:other', (req, res) => this.test(req, res))
-
-    return this
-
-  }
-
+  @Get('/')
   public index(req: Request, res: Response, next: NextFunction): void {
 
     if (req.session.views) {
@@ -52,7 +33,7 @@ export default class HomeController extends BaseController {
 
       res
         .status(200)
-        .send(`Welcome back. Visit #: ${req.session.views}`)
+        .write(`Welcome back. Visit #: ${req.session.views}`)
 
     } else {
 
@@ -62,7 +43,7 @@ export default class HomeController extends BaseController {
 
       res
         .status(200)
-        .send('Hello!')
+        .write('Hello!')
 
     }
 
@@ -70,21 +51,25 @@ export default class HomeController extends BaseController {
 
   }
 
-  public testTemplate(req: Request, res: Response): Response {
+  @Get('/test')
+  public testTemplate(req: Request, res: Response, next: NextFunction): void {
 
     res.render('test', { name: 'Robb' })
 
     this.eventEmitter.emit('someEvent')
 
-    return res
+    next()
 
   }
 
-  public test(req: Request, res: Response): Response {
+  @Get('/test/:test/other/:other')
+  public test(req: Request, res: Response, next: NextFunction): void {
 
     this.someService.someMethod()
 
-    return res.send(req.params)
+    res.json(req.params)
+
+    next()
 
   }
 

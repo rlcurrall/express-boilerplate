@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { container, InjectionToken } from 'tsyringe'
 
-import { Middleware } from '../typings'
+import { Middleware, RouteDefinition } from '../typings'
 import { IController } from '../interfaces'
 
 export default class Controller implements IController {
@@ -18,13 +18,7 @@ export default class Controller implements IController {
 
   protected middleware: Array<InjectionToken> = []
 
-  protected mapActions(): this {
-
-    return this
-
-  }
-
-  public initialize(): void {
+  public registerMiddleware(): this {
 
     for (const m of this.middleware) {
 
@@ -33,7 +27,22 @@ export default class Controller implements IController {
 
     }
 
-    this.mapActions()
+    return this
+
+  }
+
+  public mapActions(definitions: RouteDefinition[]): this {
+
+    for (const i in definitions) {
+
+      const d = definitions[i]
+      const fn = d.handler
+
+      this.router[d.method](d.path, (req, res, next) => fn.call(this, req, res, next))
+
+    }
+
+    return this
 
   }
 
